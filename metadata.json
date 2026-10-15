@@ -1,0 +1,6 @@
+{
+  "name": "Cloudboy MAP Protection",
+  "description": "An automated compliance dashboard that monitors partner websites for MAP (Minimum Advertised Price) pricing policy violations using advanced AI search grounding.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

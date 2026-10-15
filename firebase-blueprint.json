@@ -1,0 +1,130 @@
+{
+  "entities": {
+    "project": {
+      "title": "Project",
+      "description": "User custom website builder projects tracked by userId with specific component layouts and blocks",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique project identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the website project"
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief metadata or description"
+        },
+        "userId": {
+          "type": "string",
+          "description": "The Firebase Authentication UID index"
+        },
+        "blocks": {
+          "type": "array",
+          "description": "List of SectionBlock configurations"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of last modifications"
+        }
+      },
+      "required": ["id", "name", "userId", "createdAt"]
+    },
+    "trendlineNote": {
+      "title": "TrendlineNote",
+      "description": "Permanent text annotations and color tags pinned to specific trendline data points and dates",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier, usually formatted with userId and dateStr"
+        },
+        "dateStr": {
+          "type": "string",
+          "description": "The unique date representation of the trendline point (e.g. Thu, Jul 16, 2026)"
+        },
+        "pointKey": {
+          "type": "string",
+          "description": "Optional composite key identifying SKU or specific series data point"
+        },
+        "text": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "The content of the annotation note"
+        },
+        "tag": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Optional category tag (e.g. Approved Promo, Legal Review, Surge Warning)"
+        },
+        "color": {
+          "type": "string",
+          "enum": ["rose", "amber", "emerald", "indigo", "purple", "sky"],
+          "description": "Color code name"
+        },
+        "violationsCount": {
+          "type": "number",
+          "description": "Number of detected violations associated with this date point"
+        },
+        "userId": {
+          "type": "string",
+          "description": "The Firebase Authentication UID of the annotator"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of last modification"
+        }
+      },
+      "required": ["id", "dateStr", "text", "color", "userId", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/projects/{projectId}": {
+      "schema": "project",
+      "description": "Website project definitions created by authenticated users"
+    },
+    "/trendlineNotes/{noteId}": {
+      "schema": "trendlineNote",
+      "description": "Trendline data point annotations saved per user and synchronized across sessions"
+    }
+  },
+  "collections": {
+    "projects": {
+      "description": "User custom website builder projects tracked by userId with specific component layouts and blocks",
+      "fields": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "userId": { "type": "string" },
+        "blocks": { "type": "array" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "trendlineNotes": {
+      "description": "Color-coded annotations for specific compliance scanner trendline dates",
+      "fields": {
+        "id": { "type": "string" },
+        "dateStr": { "type": "string" },
+        "pointKey": { "type": "string" },
+        "text": { "type": "string" },
+        "tag": { "type": "string" },
+        "color": { "type": "string" },
+        "violationsCount": { "type": "number" },
+        "userId": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    }
+  }
+}

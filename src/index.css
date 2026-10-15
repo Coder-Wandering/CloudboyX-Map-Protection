@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Brand Maritime Gradient */
+  --color-brand-midnight: #03045e;
+  --color-brand-royal:    #023e8a;
+  --color-brand-ocean:    #0077b6;
+  --color-brand-pacific:  #0096c7;
+  --color-brand-cerulean: #00b4d8;
+  --color-brand-sky:      #48cae4;
+  --color-brand-mist:     #90e0ef;
+  --color-brand-ice:      #caf0f8;
+
+  /* Surfaces & Neutrals */
+  --color-bg-canvas:      #fafaf9;
+  --color-bg-card:        #ffffff;
+  --color-border-subtle:  #e7e5e4;
+  --color-text-primary:   #1c1917;
+  --color-text-secondary: #78716c;
+
+  /* Financial Indicators */
+  --color-bullish:        #10b981;
+  --color-bearish:        #f43f5e;
+  --color-volatility:     #f59e0b;
+  --color-quantitative:   #6366f1;
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Brand Maritime Gradient */
+  --color-brand-midnight: var(--color-brand-midnight);
+  --color-brand-royal: var(--color-brand-royal);
+  --color-brand-ocean: var(--color-brand-ocean);
+  --color-brand-pacific: var(--color-brand-pacific);
+  --color-brand-cerulean: var(--color-brand-cerulean);
+  --color-brand-sky: var(--color-brand-sky);
+  --color-brand-mist: var(--color-brand-mist);
+  --color-brand-ice: var(--color-brand-ice);
+
+  /* Surfaces & Neutrals */
+  --color-bg-canvas: var(--color-bg-canvas);
+  --color-bg-card: var(--color-bg-card);
+  --color-border-subtle: var(--color-border-subtle);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+
+  /* Financial Indicators */
+  --color-bullish: var(--color-bullish);
+  --color-bearish: var(--color-bearish);
+  --color-volatility: var(--color-volatility);
+  --color-quantitative: var(--color-quantitative);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-canvas);
+  color: var(--color-text-primary);
+}
+
+/* Custom scrollbar optimized for dark mode */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Smooth map tile, heatmap overlay, and vertical slider zoom transitions */
+.google-map-heatmap-view {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.google-map-heatmap-view .gm-style {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.google-map-heatmap-view .gm-style > div:first-child {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.google-map-heatmap-view img[src*="maps.googleapis.com"],
+.google-map-heatmap-view img[src*="ggpht.com"],
+.google-map-heatmap-view canvas {
+  transition: opacity 0.25s ease-out, filter 0.25s ease-out, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Vertical Zoom Range Slider Control styling & smooth interaction state */
+#map-vertical-zoom-slider,
+#schematic-map-vertical-zoom-slider {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+#map-vertical-zoom-slider:hover,
+#schematic-map-vertical-zoom-slider:hover {
+  border-color: rgba(99, 102, 241, 0.7);
+  box-shadow: 0 10px 30px -5px rgba(99, 102, 241, 0.25);
+}
+
+#map-vertical-zoom-slider input[type="range"],
+#schematic-map-vertical-zoom-slider input[type="range"] {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#map-vertical-zoom-slider input[type="range"]::-webkit-slider-thumb,
+#schematic-map-vertical-zoom-slider input[type="range"]::-webkit-slider-thumb {
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+#map-vertical-zoom-slider input[type="range"]::-webkit-slider-thumb:hover,
+#schematic-map-vertical-zoom-slider input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.8);
+}
+
+#map-vertical-zoom-slider input[type="range"]::-webkit-slider-thumb:active,
+#schematic-map-vertical-zoom-slider input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.4);
+  box-shadow: 0 0 14px rgba(129, 140, 248, 1);
+}
+
+/* Subtle Animated Search Pulse Ring Overlay */
+@keyframes pulse-ring-expand {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-ring-expand-slow {
+  0% {
+    transform: scale(0.3);
+    opacity: 0.95;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-radar-sweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring-expand 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.animate-pulse-ring-slow {
+  animation: pulse-ring-expand-slow 3.2s cubic-bezier(0.16, 1, 0.3, 1) infinite 0.8s;
+}
+
+.animate-radar-sweep {
+  animation: pulse-radar-sweep 5s linear infinite;
+}
+
